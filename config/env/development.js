@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/mean-dev',
+	db: 'mongodb://localhost/cekirdek-dev',
 	app: {
-		title: 'MEAN.JS - Development Environment'
+		title: 'Çekirdek - Development Environment'
 	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',

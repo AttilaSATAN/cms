@@ -2,6 +2,7 @@
 
 module.exports = function(grunt) {
 	// Unified Watch Object
+
 	var watchFiles = {
 		serverViews: ['app/views/**/*.*'], 
 		serverJS: ['gruntfile.js', 'server.js', 'config/**/*.js', 'app/**/*.js'],
@@ -14,7 +15,16 @@ module.exports = function(grunt) {
 	// Project Configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+
 		watch: {
+			 styles: {
+		        files: ['public/modules/core/less/*.less'], // which files to watch
+		        tasks: ['less'],
+		        options: {
+		          nospawn: true,
+		          livereload: true
+		        }
+      		},
 			serverViews: {
 				files: watchFiles.serverViews,
 				options: {
@@ -49,6 +59,19 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		less: {
+	      development: {
+	        options: {
+	          //compress: true,
+	          //yuicompress: true,
+	          //optimization: 2
+	        },
+	        files: {
+	          // target.css file: source.less file
+	          'public/modules/core/css/theme.css': 'public/modules/core/less/theme.less'
+	        }
+	      }
+	 	},
 		jshint: {
 			all: {
 				src: watchFiles.clientJS.concat(watchFiles.serverJS),
@@ -167,4 +190,8 @@ module.exports = function(grunt) {
 
 	// Test task.
 	grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+	
+
+  
+
 };
